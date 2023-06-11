@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 matplotlib.use('Qt5Agg')  # 'Qt5Agg'
 
 
-ser = serial.Serial('COM3', 9600)
+ser = serial.Serial('/dev/ttyUSB0', 9600)
 ser.flushInput()
 
 timestamps = []
@@ -22,9 +22,11 @@ ax.set_ylabel('Voltages')
 ax.set_title('UART Over USB')
 
 ax.legend()
-
+x_old = 0
+y_old = 0
 start_time = time.time()
 while True:
+    time.sleep(0.5)
     try:
         line = ser.readline().decode('utf-8').rstrip()
 
@@ -39,6 +41,11 @@ while True:
             data_x.append(x)
             data_y.append(y)
 
+            if x > 0 and x != x_old:
+                print("LEFT")
+            if y > 0 and y != y_old:
+                print("RIGHT")
+
             line_x.set_data(timestamps, data_x)
             line_y.set_data(timestamps, data_y)
 
@@ -49,6 +56,9 @@ while True:
 
             plt.draw()
             plt.pause(0.01)
+
+            x_old = x
+            y_old = y
 
     except KeyboardInterrupt:
         ser.close()

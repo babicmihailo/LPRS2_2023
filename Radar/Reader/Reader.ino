@@ -3,6 +3,8 @@ const int sensorPin2 = A1;
 
 void setup() {
   Serial.begin(9600);
+  pinMode(sensorPin1, OUTPUT);
+  pinMode(sensorPin2, OUTPUT);
 }
 
 void loop() {
@@ -17,5 +19,5 @@ void loop() {
   Serial.print(", ");
   Serial.println(voltage2);
 
-  delay(100);
+  delay(500);
 }
