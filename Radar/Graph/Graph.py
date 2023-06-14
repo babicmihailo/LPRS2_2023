@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 matplotlib.use('Qt5Agg')  # 'Qt5Agg'
 
 
-ser = serial.Serial('/dev/ttyUSB0', 9600)
+ser = serial.Serial('COM5', 9600)
 ser.flushInput()
 
 timestamps = []
@@ -41,9 +41,9 @@ while True:
             data_x.append(x)
             data_y.append(y)
 
-            if x > 0 and x != x_old:
+            if x > 0 and x != x_old and x_old < 0.1:
                 print("LEFT")
-            if y > 0 and y != y_old:
+            if y > 0 and y != y_old and y_old < 0.1:
                 print("RIGHT")
 
             line_x.set_data(timestamps, data_x)
