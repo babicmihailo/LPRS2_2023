@@ -1,5 +1,7 @@
 # IoT Object Movement Tracking between Two Sensors with RCWL-0516 Doppler Radar
 
+![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)
+
 Welcome to the IoT Object Movement Tracking project! This project utilizes the RCWL-0516 Doppler radar sensors to detect object movement, track their distance and movement between two sensors, and visualize the data using Python for graphing and Arduino for data collection.
 
 ## Features
